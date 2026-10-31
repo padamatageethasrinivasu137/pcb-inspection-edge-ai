@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Datasets
+DeepPCB-master/
+dataset/
+yolo_dataset/
+
+# Training outputs and caches
+runs/
+wandb/
+*.cache
+
+# Temporary images and uploads
+uploads/
+*.tmp
+*.log
+
+# macOS
+.DS_Store
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Model files: manage separately through Git LFS or Releases
+*.pt
+*.onnx
+
+# Editor files
+.idea/
