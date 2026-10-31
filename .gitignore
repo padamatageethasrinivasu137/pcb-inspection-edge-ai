@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
 .ipynb_checkpoints/
 
 # Virtual environments
@@ -9,17 +10,15 @@ venv/
 .venv/
 env/
 
-# Datasets
+# Datasets and generated training data
 DeepPCB-master/
 dataset/
 yolo_dataset/
-
-# Training outputs and caches
 runs/
 wandb/
 *.cache
 
-# Temporary images and uploads
+# Temporary files and uploads
 uploads/
 *.tmp
 *.log
@@ -27,15 +26,22 @@ uploads/
 # macOS
 .DS_Store
 
-# Secrets
+# Secrets and local configuration
 .env
 .env.*
 *.pem
 *.key
 
-# Model files: manage separately through Git LFS or Releases
+# Model binaries — distribute separately
 *.pt
 *.onnx
 
-# Editor files
+# Machine-specific dataset configuration
+/ai-model/configs/data.local.yaml
+
+# Editors
 .idea/
+
+# Root-level dataset symbolic links
+/dataset
+/yolo_dataset
