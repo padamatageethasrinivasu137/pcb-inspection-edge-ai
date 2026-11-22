@@ -26,7 +26,6 @@ The development and deployment workflow consists of:
 3. Export of the trained model to ONNX.
 4. Deployment on Raspberry Pi using ONNX Runtime.
 5. Image inspection through a Flask web application.
-6. Future hardware acceleration using an Efinix Ti60 FPGA.
 
 ## 3. Repository Structure
 
@@ -112,8 +111,7 @@ See [Raspberry Pi Deployment](raspberry-pi/README.md) for setup and execution in
 ## 8. Hardware
 
 - Apple MacBook Air M3 — model development and training.
-- Raspberry Pi 5 — edge inference and application hosting.
-- Efinix Ti60 FPGA — planned hardware acceleration.
+- Raspberry Pi 4 — edge inference and application hosting.
 
 ## 9. Model Distribution
 
