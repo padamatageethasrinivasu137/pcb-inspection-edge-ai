@@ -1,10 +1,10 @@
-# Raspberry Pi 5 — ONNX Performance Benchmark
+# Raspberry Pi 4 — ONNX Performance Benchmark
 
 ## 1. Hardware and Software
 
 | Parameter | Configuration |
 |---|---|
-| Hardware | Raspberry Pi 5 |
+| Hardware | Raspberry Pi 4 |
 | Model | YOLO11n |
 | Model format | ONNX |
 | Execution provider | ONNX Runtime CPUExecutionProvider |
@@ -35,7 +35,7 @@ The benchmark does not include Flask request handling, image upload, preprocessi
 
 ## 4. Summary
 
-The two benchmark runs produced similar inference times, establishing a preliminary Raspberry Pi 5 CPU inference baseline of approximately 451–457 ms per image.
+The two benchmark runs produced similar inference times, establishing a preliminary Raspberry Pi 4 CPU inference baseline of approximately 451–457 ms per image.
 
 These measurements are specific to the tested model, input image, software environment and hardware conditions. They should not be interpreted as complete application response times.
 
