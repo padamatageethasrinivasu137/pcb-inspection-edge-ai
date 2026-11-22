@@ -106,7 +106,6 @@ See [Raspberry Pi Deployment](raspberry-pi/README.md) for setup and execution in
 | Raspberry Pi CPU inference | Verified |
 | Flask image inspection interface | Implemented and route-tested |
 | Live camera integration | Not yet integrated |
-| FPGA acceleration | Planned |
 
 ## 8. Hardware
 
