@@ -119,7 +119,3 @@ The exported ONNX model is stored at `ai-model/weights/best.onnx` and tracked us
 The PyTorch checkpoints (`best.pt` and `last.pt`), datasets and generated training runs remain local and are excluded from Git.
 
 Install Git LFS before cloning and run `git lfs pull` to retrieve the ONNX model. See `ai-model/weights/README.md` for instructions.
-
-## 10. License
-
-License to be determined.
