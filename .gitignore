@@ -45,3 +45,5 @@ uploads/
 # Root-level dataset symbolic links
 /dataset
 /yolo_dataset
+
+!/ai-model/weights/best.onnx
