@@ -164,7 +164,7 @@ def main():
     # --------------------------------------------------
 
     print()
-    print("===== Raspberry Pi 5 CPU ONNX Benchmark =====")
+    print("===== Raspberry Pi 4 CPU ONNX Benchmark =====")
     print(f"Image:             {image_path.name}")
     print(f"Runs:              {args.runs}")
     print(f"Total time:        {total:.3f} s")
