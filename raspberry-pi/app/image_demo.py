@@ -13,7 +13,17 @@ from flask import Flask, request, render_template_string
 # ============================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / "best.onnx"
+REPO_ROOT = BASE_DIR.parents[1]
+
+MODEL_CANDIDATES = [
+    BASE_DIR / "best.onnx",
+    REPO_ROOT / "ai-model" / "weights" / "best.onnx",
+]
+
+MODEL_PATH = next(
+    (candidate for candidate in MODEL_CANDIDATES if candidate.is_file()),
+    MODEL_CANDIDATES[0],
+)
 
 IMAGE_SIZE = 640
 CONF_THRESHOLD = 0.25

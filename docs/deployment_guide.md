@@ -16,8 +16,12 @@ Check package availability for the specific Raspberry Pi operating system and Py
 ## 2. Clone the Repository
 
 ```bash
+git lfs install
+
 git clone https://github.com/padamatageethasrinivasu137/pcb-inspection-edge-ai.git
 cd pcb-inspection-edge-ai
+
+git lfs pull
 ```
 
 ## 3. Create a Virtual Environment
@@ -37,11 +41,18 @@ pip install -r requirements.txt
 
 ## 5. Install the ONNX Model
 
-The Flask application expects the model at:
+The exported YOLO11n ONNX model is tracked using Git LFS at:
 
-`raspberry-pi/app/best.onnx`
+`ai-model/weights/best.onnx`
 
-The model binary is not stored in the ordinary Git repository. Obtain the matching model artifact from the project's versioned release when available, verify its checksum, and place it at the expected path.
+After cloning, run `git lfs pull` from the repository root to retrieve the model.
+
+The Flask application searches for the model in this order:
+
+1. `raspberry-pi/app/best.onnx` (optional app-local copy).
+2. `ai-model/weights/best.onnx` (canonical repository copy).
+
+No separate release download is required.
 
 ## 6. Run the Flask Application
 
@@ -89,5 +100,5 @@ The current benchmark measures ONNX session inference time after preprocessing. 
 ## 9. Security Notes
 
 - Do not expose the Flask development server directly to untrusted networks.
-- Do not commit private keys, credentials, model binaries or uploaded user images.
+- The ONNX model is tracked using Git LFS. Keep PyTorch checkpoints (`best.pt`, `last.pt`), private keys, credentials and uploaded user images out of Git.
 - Use an appropriate production server and access controls for wider deployment.

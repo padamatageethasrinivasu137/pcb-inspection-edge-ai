@@ -114,9 +114,11 @@ See [Raspberry Pi Deployment](raspberry-pi/README.md) for setup and execution in
 
 ## 9. Model Distribution
 
-Trained model binaries are excluded from ordinary Git commits.
+The exported ONNX model is stored at `ai-model/weights/best.onnx` and tracked using Git LFS.
 
-The intended distribution method is versioned GitHub Releases. See `ai-model/weights/README.md` for artifact details.
+The PyTorch checkpoints (`best.pt` and `last.pt`), datasets and generated training runs remain local and are excluded from Git.
+
+Install Git LFS before cloning and run `git lfs pull` to retrieve the ONNX model. See `ai-model/weights/README.md` for instructions.
 
 ## 10. License
 

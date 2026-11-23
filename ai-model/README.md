@@ -85,14 +85,15 @@ The exported ONNX model was generated with:
 
 ## 7. Model Artifacts
 
-The local `weights/` directory contains:
+The `weights/` directory contains:
 
-- `best.pt`: best PyTorch checkpoint.
-- `last.pt`: final PyTorch checkpoint.
-- `best.onnx`: exported ONNX model.
+- `best.pt`: best PyTorch checkpoint, maintained locally and not tracked.
+- `last.pt`: final PyTorch checkpoint, maintained locally and not tracked.
+- `best.onnx`: exported ONNX model, tracked using Git LFS.
 
-These binary files are excluded from ordinary Git commits.
-They should be distributed through a versioned GitHub Release.
+The ONNX model is available through Git LFS. The PyTorch checkpoints, datasets and generated training runs are excluded from Git.
+
+See `weights/README.md` for instructions to retrieve the ONNX model.
 
 ## 8. Evaluation Records
 

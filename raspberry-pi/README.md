@@ -55,24 +55,29 @@ The pinned dependencies are listed in `requirements.txt`.
 
 ## 5. Model Setup
 
-The application uses the exported `best.onnx` model.
+The application uses the exported YOLO11n ONNX model.
 
-The current application expects the model at:
+The model is tracked using Git LFS at:
 
-`raspberry-pi/app/best.onnx`
+`ai-model/weights/best.onnx`
 
-Model binaries are excluded from ordinary Git commits. A versioned
-GitHub Release will be used to distribute the matching model artifact.
-Until a release is published, the model must be supplied separately
-and placed at the expected location.
+The application searches for the model in this order:
+
+1. `raspberry-pi/app/best.onnx` (optional app-local copy).
+2. `ai-model/weights/best.onnx` (canonical repository copy).
+
+Install Git LFS and run `git lfs pull` after cloning to retrieve the model. No separate download or GitHub Release is required.
 
 ## 6. Installation
 
 On the Raspberry Pi, clone the repository and enter the deployment directory:
 
 ```bash
+git lfs install
 git clone https://github.com/padamatageethasrinivasu137/pcb-inspection-edge-ai.git
-cd pcb-inspection-edge-ai/raspberry-pi
+cd pcb-inspection-edge-ai
+git lfs pull
+cd raspberry-pi
 ```
 
 Create and activate a virtual environment:
@@ -88,7 +93,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Place `best.onnx` in the `app/` directory as described above.
+The application loads the model from `../ai-model/weights/best.onnx` by default. An app-local copy at `app/best.onnx` is optional.
 
 ## 7. Running the Application
 
@@ -117,13 +122,13 @@ The repository includes:
 Run the inference test from the Raspberry Pi deployment directory:
 
 ```bash
-python tests/test_inference.py
+python tests/test_inference.py --image /path/to/pcb_image.jpg
 ```
 
 Run the benchmark:
 
 ```bash
-python tools/benchmark.py
+python tools/benchmark.py --image /path/to/pcb_image.jpg
 ```
 
 The main Flask application uses letterbox preprocessing. The standalone test and benchmark scripts currently use direct image resizing, so their results should not be treated as identical application-level measurements.
@@ -151,6 +156,6 @@ A single-image inference test previously recorded approximately 496 ms. Actual p
 
 ## 11. Security and Deployment Notes
 
-- Do not commit model binaries, virtual environments, private keys, certificates or uploaded images.
+- The ONNX model is tracked using Git LFS. Keep PyTorch checkpoints (`best.pt`, `last.pt`), virtual environments, private keys, certificates and uploaded images out of Git.
 - Do not expose the Flask development server directly to an untrusted network.
 - Use an appropriate production deployment and access-control configuration for wider use.

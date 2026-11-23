@@ -27,34 +27,53 @@ The script reports total timed duration, average inference latency and throughpu
 | Item | Measured configuration |
 |---|---|
 | Board | Raspberry Pi 4 |
-| RAM | To be recorded |
-| Operating system | To be recorded |
-| Python version | To be recorded |
-| ONNX Runtime version | To be recorded |
-| OpenCV version | To be recorded |
-| Model file/checksum | To be recorded |
+| Model | YOLO11n |
+| Model format | ONNX |
+| Execution provider | ONNX Runtime CPUExecutionProvider |
+| Input resolution | 640 × 640 |
+| Python version | 3.13.5 |
+| RAM | Not recorded |
+| Operating system | Not recorded |
+| ONNX Runtime version | Not recorded |
+| OpenCV version | Not recorded |
+| Model checksum | Not recorded |
 
 ## 4. Results
 
-No verified Raspberry Pi benchmark measurements are included in this report yet.
+Two preliminary benchmark runs were recorded using one PCB test image.
 
-| Measurement | Result |
-|---|---|
-| Warm-up runs | 5 by default |
-| Timed runs | 50 by default |
-| Average inference latency | Pending |
-| Throughput | Pending |
-| Median latency | Not measured by current script |
-| Maximum latency | Not measured by current script |
-| CPU utilization | Not measured by current script |
-| Memory usage | Not measured by current script |
+| Measurement | Run 1 | Run 2 |
+|---|---:|---:|
+| Warm-up runs | 5 | 5 |
+| Timed runs | 50 | 50 |
+| Total timed duration | 22.866 s | 22.562 s |
+| Average inference latency | 457.32 ms | 451.25 ms |
+| Throughput | 2.19 images/s | 2.22 images/s |
+
+The preliminary Raspberry Pi 4 CPU inference baseline is approximately 451–457 ms per image.
+
+The following metrics are not measured by the current benchmark script:
+
+- Median latency
+- Maximum latency
+- CPU utilization
+- Memory usage
 
 ## 5. Measurement Scope
 
-The current benchmark measures the ONNX Runtime session call only. Image decoding and preprocessing are performed before the timed loop.
+The benchmark measures only the ONNX Runtime inference call (`session.run()`) using Python's `time.perf_counter()`.
 
-The benchmark uses direct resizing, whereas the Flask application uses letterbox preprocessing. Therefore, benchmark results should not be interpreted as complete application response time.
+The following operations occur outside the timed loop:
 
+- Model loading and ONNX Runtime session initialization.
+- Image decoding.
+- Resizing to 640 × 640.
+- BGR-to-RGB conversion.
+- Tensor conversion, normalization and batch-dimension expansion.
+
+The benchmark uses direct resizing, whereas the Flask application uses letterbox preprocessing. It excludes Flask request handling, image uploads, application preprocessing, postprocessing and result rendering.
+
+Therefore, these measurements represent model inference latency, not complete application response time.
 ## 6. Reproducibility
 
 Run from the `raspberry-pi` directory:
